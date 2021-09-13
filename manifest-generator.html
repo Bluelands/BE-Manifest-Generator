@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Manifest generator</title>
+<meta name="title" content="Manifest generator | PixelPoly Digital">
+<meta name="description" content="Pack Manifest generator for Minecraft Bedrock Edition, with this generator you can easily generate manifest for your Skin, Resource, or Behavior pack.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pixelpoly.co/creator-tools/manifest-generator">
+<meta property="og:title" content="Manifest generator | PixelPoly Digital">
+<meta property="og:description" content="Pack Manifest generator for Minecraft Bedrock Edition, with this generator you can easily generate manifest for your Skin, Resource, or Behavior pack.">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://pixelpoly.co/creator-tools/manifest-generator">
+<meta property="twitter:title" content="Manifest generator">
+<meta property="twitter:description" content="Pack Manifest generator for Minecraft Bedrock Edition, with this generator you can easily generate manifest for your Skin, Resource, or Behavior pack.">
+
+<script src="cdn-cgi/apps/head/1bOFN9tEgpTimeIRjSh7B01aSm8.js"></script><link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
+<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="msapplication-config" content="assets/images/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<link href="assets/css/plugins.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<script src="assets/js/lib/uuid_generator_class.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+<script src="assets/js/lib/filesaver.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+<script src="assets/js/lib/jszip.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+</head>
+<body>
+
+<div class="body-inner">
+<section class="fullscreen p-t-0 m-t-0 bg-color">
+<div class="container">
+<div class="row">
+<div class="col-md-12 p-10 text-center">
+<h3 class="text-dark">Manifest generator for Minecraft Bedrock Edition</h3>
+<h3 class="text-dark">It's Easy Just With A Click Of A Button!</h3>
+<h3 class="text-dark">No Need To Have Coding Knowledge!</h3>
+<h4 class="text-dark">             It's Free For Everyone!</h3>
+<p class="text-bold m-t-0"><a href=""></a><a href=""></a></p>
+</div>
+<div class="col-md-4">
+<div>
+<div class="form-group">
+<h5 class="text-dark" for="pack.type">Pack type:</h5>
+<select oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" class="form-control" id="pack.type" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+<option selected value="data">Behavior pack</option>
+<option value="resources">Resource pack</option>
+<option value="skin_pack">Skin pack</option>
+<option value="scripts">Scripts</option>
+ <option value="dep">Resource & behavior pack (Dependent)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div>
+<div class="form-group">
+<h5>&nbsp;</h5>
+<button id="generate.pack" class="btn btn-light btn-sm" type="button" data-toggle="collapse" data-target="#options" aria-expanded="false" aria-controls="options">Generate pack</button>
+</div>
+</div>
+</div>
+<div class="col-md-12 row collapse" id="options">
+<div class="col-md-8 center">
+<div class="card card-body background-white p-40">
+<div class="form-group">
+<h5>Select pack icon:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" class="col-12" id="pack.icon" type="file" accept=".png" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<button class="btn btn-dark" id="pack.downloadA">Download</button>
+</div>
+</div>
+</div>
+</div>
+<div class="seperator m-t-5 m-b-5"></div>
+
+<div class="col-md-12" id="pack.element" style="display: none;">
+<div class="row">
+<div class="col-md-6">
+<div>
+<div class="form-group">
+<h5 class="text-dark" for="pack.name">Pack name:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="pack.name" placeholder="Name" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<h5 class="text-dark" for="pack.description">Pack description:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="pack.description" placeholder="Description" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<h5 class="text-dark" for="pack.min_engine_version">Min engine version:</h5>
+<select oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" class="form-control" id="pack.min_engine_version" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+<option selected value="[1, 17, 0]">1.17.0</option>
+<option value="[1, 16, 0]">1.16.0</option>
+<option value="[1, 14, 0]">1.14.0</option>
+<option value="[1, 13, 0]">1.13.0</option>
+<option value="none">None</option>
+</select>
+</div>
+<div class="form-group">
+<h6 for="pack.metadata.checkbox">Enable metadata:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="pack.metadata.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+</div>
+<div class="form-group" id="pack.author.element" style="display: none;">
+<h5 class="text-dark">Author info:</h5>
+ <div class="row">
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="pack.author.name" placeholder="Name" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="pack.author.url" placeholder="Website" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+</div>
+</div>
+<div class="form-group">
+<h6 for="pack.gametest.checkbox">Enable GameTest Module:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="pack.gametest.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+</div>
+<div class="form-group" id="pack.gametest.element" style="display: none;">
+<div class="row">
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" value="modules/Main.js" id="pack.gametest.file" placeholder="entry file" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div>
+<div class="form-group">
+<code>
+<textarea spellcheck="false" readonly rows="15" id="pack.code" class="form-control shadow"></textarea>
+</code>
+</div>
+<div class="form-group text-center">
+<button class="btn btn-sm btn-success" id="pack.download">Download</button>
+<button class="btn btn-sm btn-info" id="pack.copy">Copy to clipboard</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12" id="dp.element" style="display: none;">
+<div class="row">
+<div class="col-md-6" id="dp.behavior_pack">
+<div>
+<div class="form-group">
+<h5 class="text-dark" for="bp.dep.name">Behavior pack name:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="bp.dep.name" placeholder="Name" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<h5 class="text-dark" for="bp.dep.description">Behavior pack description:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="bp.dep.description" placeholder="Description" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<h5 class="text-dark" for="bp.dep.min_engine_version">Behavior pack min engine version:</h5>
+<select oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" class="form-control" id="bp.dep.min_engine_version" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+<option selected value="[1, 17, 0]">1.17.0</option>
+<option value="[1, 16, 0]">1.16.0</option>
+<option value="[1, 14, 0]">1.14.0</option>
+<option value="[1, 13, 0]">1.13.0</option>
+<option value="none">None</option>
+</select>
+</div>
+<div class="form-group">
+<h6 for="bp.enable.scripts.checkbox">Enable client script:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="bp.enable.scripts.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+<h6 for="bp.dep.metadata.checkbox">Enable behavior pack metadata:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="bp.dep.metadata.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+<h6 for="bp.gametest.checkbox">Enable GameTest Module:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="bp.gametest.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+</div>
+<div class="form-group" id="bp.dep.author.element" style="display: none;">
+<h5 class="text-dark">Author info (Optional):</h5>
+<div class="row">
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="bp.dep.author.name" placeholder="Name" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="bp.dep.author.url" placeholder="Website" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+</div>
+</div>
+<div class="form-group" id="bp.gametest.element" style="display: none;">
+<div class="row">
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" value="modules/Main.js" id="bp.gametest.file" placeholder="entry file" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+<small><strong>Note:</strong> GameTest API doesn't support dependency.</small>
+</div>
+</div>
+</div>
+<div class="form-group">
+<code>
+<textarea spellcheck="false" readonly rows="15" id="bp.dep.code" class="form-control shadow"></textarea>
+</code>
+</div>
+<div class="form-group text-center">
+<button class="btn btn-sm btn-success" id="bp.dep.download">Download</button>
+<button class="btn btn-sm btn-info" id="bp.dep.copy">Copy to clipboard</button>
+</div>
+</div>
+</div>
+<div class="col-md-6" id="dp.resource_pack">
+<div>
+<div class="form-group">
+<h5 class="text-dark" for="rp.dep.name">Resource pack name:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="rp.dep.name" placeholder="Name" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<h5 class="text-dark" for="rp.dep.description">Resource pack description:</h5>
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="rp.dep.description" placeholder="Description" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group">
+<h5 class="text-dark" for="rp.dep.min_engine_version">Resource pack min engine version:</h5>
+<select oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" class="form-control" id="rp.dep.min_engine_version" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+<option selected value="[1, 17, 0]">1.17.0</option>
+<option value="[1, 16, 0]">1.16.0</option>
+<option value="[1, 14, 0]">1.14.0</option>
+<option value="[1, 13, 0]">1.13.0</option>
+<option value="none">None</option>
+</select>
+</div>
+<div class="form-group">
+<h6 for="rp.enable.ui.checkbox">UI Capabilities:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="rp.enable.ui.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+<h6 for="rp.dep.metadata.checkbox">Enable resource pack metadata:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input m-t-5" oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" id="rp.dep.metadata.checkbox" type="checkbox" data-cf-modified-9baa3cd07bd198d6e875fc22-=""></h6>
+</div>
+<div class="form-group" id="rp.dep.author.element" style="display: none;">
+<h5 class="text-dark">Author info (Optional):</h5>
+<div class="row">
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="rp.dep.author.name" placeholder="Name" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+<div class="form-group col-md-6">
+<input oninput="if (!window.__cfRLUnblockHandlers) return false; writeManifest();" type="text" id="rp.dep.author.url" placeholder="Website" class="form-control" data-cf-modified-9baa3cd07bd198d6e875fc22-="">
+</div>
+</div>
+</div>
+<div class="form-group">
+<code>
+<textarea spellcheck="false" readonly rows="15" id="rp.dep.code" class="form-control shadow"></textarea>
+</code>
+</div>
+<div class="form-group text-center">
+<button class="btn btn-sm btn-success" id="rp.dep.download">Download</button>
+<button class="btn btn-sm btn-info" id="rp.dep.copy">Copy to clipboard</button>
+</div>
+</div>
+ </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+
+<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+<div id="sidepanel">
+<a class="panel-trigger"><span class="panel-close-x"><i class="icon-settings"></i></span></a>
+<div class="container">
+<p class="text-center">Set website preferences and they will be stored for your next visit.</p>
+<hr class="mb-4">
+<h5 class="mb-1">Color Scheme</h5>
+<p class="small text-muted mb-3">Select light or dark mode.</p>
+<div class="d-flex mb-4">
+<a id="light-mode" class="btn btn-light"><i class="icon-sun"></i> Light Mode</a>
+<a id="dark-mode" class="btn btn-dark"><i class="icon-moon"></i> Dark Mode</a>
+</div>
+</div>
+</div>
+
+<script src="assets/js/jquery.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+<script src="assets/js/plugins.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+<script src="assets/js/functions.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+<script src="assets/js/manifest.js" type="9baa3cd07bd198d6e875fc22-text/javascript"></script>
+<style>.dark .text-dark { color:#DADADA !important;};.dark .bg-color { background-color: #23272A; }; .bg-color { background-color: #DADADA; };.dark .card {background-color: #111!important; border-color: #111!important;box-shadow: 0 0 35px 0 #2b2a2a;}.dark .background-white {background-color: #111!important;border: 1px solid rgb(34, 34, 34);box-shadow: 0 0 0px 0 #111;}</style>
+<script src="cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="9baa3cd07bd198d6e875fc22-|49" defer=""></script><script defer src="../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"68e0a6f3ab8fcbb0","version":"2021.8.1","r":1,"token":"605d2ce935ef431089dfe06629bc5f8f","si":10}'></script>
+</body>
+
+<!-- Mirrored from tools.pixelpoly.co/manifest-generator by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Sep 2021 10:22:14 GMT -->
+</html>
